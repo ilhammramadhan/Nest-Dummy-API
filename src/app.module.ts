@@ -5,6 +5,8 @@ import { ParcelsModule } from './parcels/parcels.module';
 import {SequelizeModule} from '@nestjs/sequelize'
 import sequelizeConfig from './config/config';
 import { Parcel } from './parcels/entities/parcel.entity';
+import { IplmModule } from './plus/iplm/iplm.module';
+import { IplmroleModule } from './plus/iplmrole/iplmrole.module';
 
 @Module({
   imports: [
@@ -13,8 +15,9 @@ import { Parcel } from './parcels/entities/parcel.entity';
       ...sequelizeConfig,
       models : [Parcel],
       autoLoadModels : true
-    })
-
+    }),
+    IplmModule,
+    IplmroleModule,
   ],
   controllers: [AppController],
   providers: [AppService],
