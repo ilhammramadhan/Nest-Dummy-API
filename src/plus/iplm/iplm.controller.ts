@@ -1,9 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Iplmrole } from './../iplmrole/entities/iplmrole.entity';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { IplmService } from './iplm.service';
 import { CreateIplmDto } from './dto/create-iplm.dto';
 import { UpdateIplmDto } from './dto/update-iplm.dto';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('iplm')
+@ApiTags('Plus')
+@Controller('plus/iplm')
 export class IplmController {
   constructor(private readonly iplmService: IplmService) {}
 
@@ -13,12 +25,14 @@ export class IplmController {
   }
 
   @Get()
-  findAll() {
-    return this.iplmService.findAll();
+  findAll(@Query() allParams: any) {
+    this.iplmService.rootService();
+    return this.iplmService.findAll(allParams);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
+    this.iplmService.rootService();
     return this.iplmService.findOne(id);
   }
 

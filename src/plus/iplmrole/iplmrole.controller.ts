@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { IplmroleService } from './iplmrole.service';
 import { CreateIplmroleDto } from './dto/create-iplmrole.dto';
 import { UpdateIplmroleDto } from './dto/update-iplmrole.dto';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('iplmrole')
+@ApiTags('Plus')
+@Controller('plus/iplmrole')
 export class IplmroleController {
   constructor(private readonly iplmroleService: IplmroleService) {}
 
@@ -13,22 +15,24 @@ export class IplmroleController {
   }
 
   @Get()
-  findAll() {
-    return this.iplmroleService.findAll();
+  findAll(@Query() allParams: any) {
+    this.iplmroleService.rootService()
+    return this.iplmroleService.findAll(allParams);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.iplmroleService.findOne(+id);
+  @Get(':code')
+  findOne(@Param('code') code: string) {
+    this.iplmroleService.rootService()
+    return this.iplmroleService.findOne(code);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateIplmroleDto: UpdateIplmroleDto) {
-    return this.iplmroleService.update(+id, updateIplmroleDto);
+  @Patch(':code')
+  update(@Param('code') code: string, @Body() updateIplmroleDto: UpdateIplmroleDto) {
+    return this.iplmroleService.update(code, updateIplmroleDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.iplmroleService.remove(+id);
+  @Delete(':code')
+  remove(@Param('code') code: string) {
+    return this.iplmroleService.remove(code);
   }
 }

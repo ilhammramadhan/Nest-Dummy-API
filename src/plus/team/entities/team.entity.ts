@@ -1,4 +1,3 @@
-import { Iplm } from './../../iplm/entities/iplm.entity';
 import {
   Table,
   Model,
@@ -6,23 +5,14 @@ import {
   DataType,
   Sequelize,
   HasOne,
-  BelongsTo,
-  ForeignKey,
-  HasMany
 } from 'sequelize-typescript';
   
-@Table({ tableName: 'plus_iplmrole' })
-export class Iplmrole extends Model {
+@Table({ tableName: 'plus_team' })
+export class Team extends Model {
   @Column({
     primaryKey: true,
   })
-  code: string;
-
-  @Column
-  name: string
-
-  @HasMany(() => Iplm)
-  iplm: Iplm[]
+  id: string;
 
   @Column({
     field: 'created_at',

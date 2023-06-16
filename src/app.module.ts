@@ -7,6 +7,7 @@ import sequelizeConfig from './config/config';
 import { Parcel } from './parcels/entities/parcel.entity';
 import { IplmModule } from './plus/iplm/iplm.module';
 import { IplmroleModule } from './plus/iplmrole/iplmrole.module';
+import { TeamModule } from './plus/team/team.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { IplmroleModule } from './plus/iplmrole/iplmrole.module';
     }),
     IplmModule,
     IplmroleModule,
+    TeamModule,
   ],
   controllers: [AppController],
   providers: [AppService],

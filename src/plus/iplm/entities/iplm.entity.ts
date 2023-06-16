@@ -1,3 +1,4 @@
+import { Iplmrole } from './../../iplmrole/entities/iplmrole.entity';
 import {
   Table,
   Model,
@@ -5,16 +6,48 @@ import {
   DataType,
   Sequelize,
   HasOne,
+  HasMany,
+  ForeignKey,
+  BelongsTo,
 } from 'sequelize-typescript';
   
 @Table({ tableName: 'plus_iplm' })
 export class Iplm extends Model {
   @Column({
     primaryKey: true,
-    defaultValue: DataType.UUIDV4,
-    type: DataType.UUID,
   })
-  id: string;
+  code: string;
+
+  @Column
+  first_name: string
+
+  @Column
+  last_name: string
+
+  @Column
+  initial: string
+
+  @Column
+  duty_ratio: string
+  
+  @Column
+  duty_type: string
+
+  @Column
+  duty_hours: string
+
+  @Column
+  letter_ratio: string
+
+  @Column
+  letter_type: string
+
+  @ForeignKey(() => Iplmrole)
+  @Column
+  plm_role_code: string
+
+  @BelongsTo(() => Iplmrole)
+  pimrole: Iplmrole
 
   @Column({
     field: 'created_at',

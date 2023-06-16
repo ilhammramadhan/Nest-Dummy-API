@@ -1,26 +1,40 @@
-import { Model, ModelCtor } from "sequelize-typescript";
+import { Model, ModelCtor } from 'sequelize-typescript';
+import { Includeable } from 'sequelize';
+import { TransformParameters } from './transform.parameters';
+import { IResponse, Response } from './response';
+import { NotFoundException } from '@nestjs/common';
 
 export class BaseService<T extends Model> {
   protected readonly repository: ModelCtor<T>;
 
-  private readonly PATTERN_EQUALS = 'eq';
-  private readonly PATTERN_NOT_EQUALS = 'neq';
-  private readonly PATTERN_GREATER_THAN = 'gte';
-  private readonly PATTERN_LESS_THAN = 'lte';
-  private readonly PATTERN_LIKE = 'like';
+  private includeModel: Includeable[] | Includeable;
 
   constructor(repository: ModelCtor<T>) {
     this.repository = repository;
   }
 
-  async findAll(): Promise<T[]> {
-    
+  public JoinModel(options: typeof this.includeModel) {
+    this.includeModel = options;
+  }
 
-    return this.repository.findAll();
+  async findAll(requestParams?: any): Promise<IResponse<T[]>> {
+    const { limit, where, offset } = new TransformParameters(requestParams);
+    const record = await this.repository.findAll({
+      include: this.includeModel,
+      limit,
+      offset,
+      where,
+    });
+    const response = new Response(record, limit, offset);
+    return response.FindAllResponse();
   }
 
   async findOne(id: string): Promise<T> {
-    return this.repository.findByPk(id);
+    const record = await this.repository.findByPk(id, {
+      include: this.includeModel,
+    });
+    if (!record) throw new NotFoundException('Record ID not found')
+    return record
   }
 
   async create(data: any): Promise<T> {
@@ -31,14 +45,14 @@ export class BaseService<T extends Model> {
   async update(id: string, data: any): Promise<T> {
     data.updated_at = new Date();
     const record = await this.repository.findByPk(id);
-    if (!record) throw new Error('Record ID not found');
+    if (!record) throw new NotFoundException('Record ID not found');
     return record.update(data);
   }
 
   async remove(id: string): Promise<T> {
     const record = await this.repository.findByPk(id);
     if (record) await record.destroy();
-    else throw new Error('Record ID not found');
+    else throw new NotFoundException('Record ID not found');
 
     return record;
   }
