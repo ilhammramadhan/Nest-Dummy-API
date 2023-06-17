@@ -8,6 +8,8 @@ import { Parcel } from './parcels/entities/parcel.entity';
 import { IplmModule } from './plus/iplm/iplm.module';
 import { IplmroleModule } from './plus/iplmrole/iplmrole.module';
 import { TeamModule } from './plus/team/team.module';
+import { DutytemplateModule } from './plus/dutytemplate/dutytemplate.module';
+import { DutytypeModule } from './plus/dutytype/dutytype.module';
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { TeamModule } from './plus/team/team.module';
     IplmModule,
     IplmroleModule,
     TeamModule,
+    DutytemplateModule,
+    DutytypeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

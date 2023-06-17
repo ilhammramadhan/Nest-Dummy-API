@@ -28,7 +28,7 @@
     "@nestjs/sequelize": "^9.0.2",
     "@nestjs/swagger": "^6.3.0",
     "@nestjsplus/dyn-schematics": "^1.0.12",
-    "@rezadev/nest-schematics": "^1.0.13",
+    "@rezadev/nest-schematics": "^1.0.15",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "mysql2": "^3.3.5",
