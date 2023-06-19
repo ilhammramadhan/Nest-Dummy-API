@@ -12,7 +12,7 @@ export class Dutytype extends Model {
   @Column({
     primaryKey: true,
   })
-  id: string;
+  _id: string;
 
   @Column
   duty_type: string

@@ -13,7 +13,7 @@ export class Dutytemplate extends Model {
     primaryKey: true,
     autoIncrement: true
   })
-  id: number;
+  _id: number;
 
   @Column
   status_template_roster: string
