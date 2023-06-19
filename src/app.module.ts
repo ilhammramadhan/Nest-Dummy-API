@@ -7,9 +7,10 @@ import sequelizeConfig from './config/config';
 import { Parcel } from './parcels/entities/parcel.entity';
 import { IplmModule } from './plus/iplm/iplm.module';
 import { IplmroleModule } from './plus/iplmrole/iplmrole.module';
-import { TeamModule } from './plus/team/team.module';
 import { DutytemplateModule } from './plus/dutytemplate/dutytemplate.module';
 import { DutytypeModule } from './plus/dutytype/dutytype.module';
+import { TeamModule } from './plus/team/team.module';
+import { TeamroleModule } from './plus/teamrole/teamrole.module';
 
 @Module({
   imports: [
@@ -21,9 +22,10 @@ import { DutytypeModule } from './plus/dutytype/dutytype.module';
     }),
     IplmModule,
     IplmroleModule,
-    TeamModule,
     DutytemplateModule,
     DutytypeModule,
+    TeamModule,
+    TeamroleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

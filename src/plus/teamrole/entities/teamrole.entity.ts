@@ -1,4 +1,3 @@
-import { Teamrole } from './../../teamrole/entities/teamrole.entity';
 import { Iplm } from './../../iplm/entities/iplm.entity';
 import {
   Table,
@@ -8,12 +7,10 @@ import {
   Sequelize,
   HasOne,
   HasMany,
-  ForeignKey,
-  BelongsTo,
 } from 'sequelize-typescript';
 
-@Table({ tableName: 'plus_team', timestamps: false })
-export class Team extends Model {
+@Table({ tableName: 'plus_teamrole', timestamps: false })
+export class Teamrole extends Model {
   @Column({
     primaryKey: true,
   })
@@ -24,7 +21,7 @@ export class Team extends Model {
 
   @HasMany(() => Iplm)
   iplm: Iplm[]
-    
+
   @Column({
     field: 'created_at',
     type: DataType.DATE,

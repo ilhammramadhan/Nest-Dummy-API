@@ -1,3 +1,5 @@
+import { Teamrole } from './../../teamrole/entities/teamrole.entity';
+import { Team } from './../../team/entities/team.entity';
 import { Iplmrole } from './../../iplmrole/entities/iplmrole.entity';
 import {
   Table,
@@ -33,8 +35,14 @@ export class Iplm extends Model {
   @Column
   duty_type: string
 
+  @Column({ type: DataType.TIME })
+  duty_start_time: string
+
+  @Column({ type: DataType.TIME })
+  duty_end_time: string
+
   @Column
-  duty_hours: string
+  email: string
 
   @Column
   letter_ratio: string
@@ -48,6 +56,20 @@ export class Iplm extends Model {
 
   @BelongsTo(() => Iplmrole)
   pimrole: Iplmrole
+
+  @ForeignKey(() => Team)
+  @Column
+  team_code: string
+
+  @ForeignKey(() => Teamrole)
+  @Column
+  team_role_code: string
+
+  @BelongsTo(() => Teamrole)
+  teamrole: Teamrole
+
+  @BelongsTo(() => Team)
+  team: Team
 
   @Column({
     field: 'created_at',
