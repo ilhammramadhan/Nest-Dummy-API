@@ -11,7 +11,7 @@ import {
   HasMany
 } from 'sequelize-typescript';
   
-@Table({ tableName: 'plus_iplmrole' })
+@Table({ tableName: 'plus_iplmrole', timestamps: false })
 export class Iplmrole extends Model {
   @Column({
     primaryKey: true,
@@ -27,14 +27,16 @@ export class Iplmrole extends Model {
   @Column({
     field: 'created_at',
     type: DataType.DATE,
+    defaultValue: new Date()
   })
-  createdAt: Date;
+  created_at: Date;
 
   @Column({
     field: 'updated_at',
     type: DataType.DATE,
+    defaultValue: new Date()
   })
-  updatedAt: Date;
+  updated_at: Date;
 
   @Column({ defaultValue: 'system' })
   created_by: string;

@@ -13,7 +13,7 @@ import {
   BelongsTo,
 } from 'sequelize-typescript';
   
-@Table({ tableName: 'plus_iplm' })
+@Table({ tableName: 'plus_iplm', timestamps: false })
 export class Iplm extends Model {
   @Column({
     primaryKey: true,
@@ -74,14 +74,16 @@ export class Iplm extends Model {
   @Column({
     field: 'created_at',
     type: DataType.DATE,
+    defaultValue: new Date()
   })
-  createdAt: Date;
+  created_at: Date;
 
   @Column({
     field: 'updated_at',
     type: DataType.DATE,
+    defaultValue: new Date()
   })
-  updatedAt: Date;
+  updated_at: Date;
 
   @Column({ defaultValue: 'system' })
   created_by: string;
