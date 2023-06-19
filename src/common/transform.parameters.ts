@@ -1,5 +1,5 @@
 import { SERVER_DATE_TIME_FORMAT } from './../utils/constants';
-import * as moment from 'moment';
+import moment from 'moment';
 import * as _ from "lodash"
 import { Op } from 'sequelize';
 import { MethodNotAllowedException } from '@nestjs/common';
