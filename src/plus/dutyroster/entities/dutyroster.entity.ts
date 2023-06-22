@@ -7,54 +7,39 @@ import {
   HasOne,
 } from 'sequelize-typescript';
   
-@Table({ tableName: 'plus_dutytemplate', timestamps: false })
-export class Dutytemplate extends Model {
+@Table({ tableName: 'plus_dutyroster', timestamps: false })
+export class Dutyroster extends Model {
   @Column({
     primaryKey: true,
     autoIncrement: true
   })
   _id: number;
 
+  @Column
+  status: string
+
+  @Column({
+    type: DataType.DATE
+  })
+  duty_start_date: Date
+
+  @Column({
+    type: DataType.DATE
+  })
+  duty_end_date: Date
+
   @Column({
     type: DataType.TEXT
   })
-  list_plm_duty: string
-
-  @Column
-  template_name: string
-
-  @Column
-  duty_type: string
-
-  @Column
-  workday_type: string
+  duty_description: string
 
   @Column({
-    type: DataType.TIME,
+    type: DataType.TEXT
   })
-  workday_start: string
-
-  @Column({
-    type: DataType.TIME
-  })
-  workday_end: string
-
-  @Column({
-    type: DataType.TEXT,
-  })
-  exclusion_content: string
+  duty_template_content: string
 
   @Column
-  unit_measure_workday: string
-
-  @Column
-  no_unit_plm: string
-
-  @Column
-  no_plm_required_duty: string
-
-  @Column
-  status_template: string
+  type: string
 
   @Column({
     field: 'created_at',

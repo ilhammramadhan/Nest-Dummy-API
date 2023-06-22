@@ -9,6 +9,7 @@ import { DutytemplateModule } from './plus/dutytemplate/dutytemplate.module';
 import { DutytypeModule } from './plus/dutytype/dutytype.module';
 import { TeamModule } from './plus/team/team.module';
 import { TeamroleModule } from './plus/teamrole/teamrole.module';
+import { DutyrosterModule } from './plus/dutyroster/dutyroster.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { TeamroleModule } from './plus/teamrole/teamrole.module';
     DutytypeModule,
     TeamModule,
     TeamroleModule,
+    DutyrosterModule
   ],
   controllers: [AppController],
   providers: [AppService],
