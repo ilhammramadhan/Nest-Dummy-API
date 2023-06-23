@@ -16,6 +16,11 @@ export class DutyrosterController {
     return this.dutyrosterService.create(createDutyrosterDto);
   }
 
+  @Post('/generate-plm')
+  generatePLM(@Body() requestBody: any) {
+    return this.dutyrosterService.generatePLM(requestBody);
+  }
+
   @Get()
   findAll(@Query() allParams: any) {
     this.dutyrosterService.rootService()
